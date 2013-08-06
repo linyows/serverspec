@@ -154,10 +154,8 @@ module Serverspec
       end
 
       def check_installed_by_gem(name, version=nil)
-        cmd = "gem list --local | grep -w -- ^#{escape(name)}"
-        if ! version.nil?
-          cmd = "#{cmd} | grep -w -- #{escape(version)}"
-        end
+        cmd = "gem list #{escape(name)} | grep -w -- #{escape(name)}"
+        cmd = "#{cmd} | grep -w -- #{escape(version)}" unless version.nil?
         cmd
       end
 

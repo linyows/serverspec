@@ -4,7 +4,7 @@ include Serverspec::Helper::Darwin
 
 describe package('jekyll') do
   it { should be_installed.by('gem') }
-  its(:command) { should eq "gem list --local | grep -w -- ^jekyll" }
+  its(:command) { should eq "gem list jekyll | grep -w -- jekyll" }
 end
 
 describe package('invalid-gem') do
@@ -13,7 +13,7 @@ end
 
 describe package('jekyll') do
   it { should be_installed.by('gem').with_version('1.1.1') }
-  its(:command) { should eq "gem list --local | grep -w -- ^jekyll | grep -w -- 1.1.1" }
+  its(:command) { should eq "gem list jekyll | grep -w -- jekyll | grep -w -- 1.1.1" }
 end
 
 describe package('jekyll') do
